@@ -5,8 +5,8 @@ pragma solidity >= 0.8.0;
 /// @author Lucas Zunino
 /// @notice Un Smart Contract para depositar y retirar ETH con trazabilidad completa
 /// @dev Implementa patrones de seguridad como checks-effects-interactions y custom errors
-/** @bug no se si un bug pero cuando cacheo variables para optimizar gas y hacer solo una lectura y una escritura, remix me
-da error y no las reconoce(o algo hice mal) */
+/** bug no se si un bug pero cuando cacheo variables para optimizar gas y hacer solo una lectura y una escritura, remix me
+da error y no las reconoce(hago el contrato en vs code y despues lo paso a remix) */
 contract KipuBank {
     
     /// @notice Límite máximo permitido para un retiro individual
@@ -134,7 +134,6 @@ contract KipuBank {
         if (totalDepositado + msg.value > CAPACIDAD_BANCO) {
             revert CapacidadBancoExcedida(totalDepositado, msg.value, CAPACIDAD_BANCO);
         }
-        
         // -----effects-----
         if (!haDepositado[msg.sender]) {
             haDepositado[msg.sender] = true;
@@ -227,7 +226,7 @@ contract KipuBank {
             }
         }
     }
-    
+
     /// @notice Valida que una dirección no sea la dirección cero
     /// @param addr Dirección a validar
     /// @return isValid True si la dirección es válida, false en caso contrario
