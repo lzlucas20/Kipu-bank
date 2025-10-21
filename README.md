@@ -30,4 +30,33 @@ depositar() → Enviás ETH (completá el campo “Value” arriba, por ejemplo 
 retirar(monto) → Especificás cuánto querés retirar (en wei).    
 obtenerSaldoBoveda(address) → Consultás el saldo de un usuario.    
 registrosUsuario(address) → Muestra saldo, cantidad de depósitos y retiros.    
-obtenerCapacidadRestante() → Te muestra cuánto espacio queda en el banco.    
+obtenerCapacidadRestante() → Te muestra cuánto espacio queda en el banco.
+
+💡 Ejemplo de Uso Completo
+
+1-Despliego con:
+
+_limiteRetiro: 10000000000000000 (0.01 ETH por retiro)
+_capacidadBanco: 1000000000000000000 (1 ETH total)
+
+
+2-Deposito 0.5 ETH
+
+Voy a depositar() → ingreso 0.5 en Value → Click en depositar
+Evento emitido: Deposito(miDireccion, 500000000000000000, 500000000000000000)
+
+
+3-Consulto mis registros
+
+registrosUsuario(miDireccion) → Devuelve: saldo=500000000000000000, depositos=1, retiros=0
+
+
+4-Retiro 0.01 ETH
+
+retirar(10000000000000000) → Click
+Evento emitido: Retiro(miDireccion, 10000000000000000, 490000000000000000)
+
+
+5-Consulto capacidad restante
+
+obtenerCapacidadRestante() → Devuelve: 500000000000000000 (0.5 ETH disponibles)
