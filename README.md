@@ -1,5 +1,6 @@
-# Kipu-bank
-Smart contract de un banco para realizar depositos, retiros y tener una trazabilidad de cada movimiento
+# 🏦 Kipu-Bank
+
+Un Smart Contract de un banco descentralizado para realizar depósitos, retiros y tener una trazabilidad completa de cada movimiento en la blockchain.
 # 📋 Caracteristicas
 Depósitos Personales: Los usuarios pueden depositar tokens nativos (ETH) en su bóveda personal     
 Retiros Controlados: Límite fijo por transacción de retiro (configurable en el despliegue)    
