@@ -32,31 +32,40 @@ obtenerSaldoBoveda(address) → Consultás el saldo de un usuario.
 registrosUsuario(address) → Muestra saldo, cantidad de depósitos y retiros.    
 obtenerCapacidadRestante() → Te muestra cuánto espacio queda en el banco.
 
-💡 Ejemplo de Uso Completo
+## 💡 Ejemplo de Uso Completo
 
-1-Despliego con:
+1. **Despliego** con:
+   - `_limiteRetiro`: `10000000000000000` (0.01 ETH por retiro)
+   - `_capacidadBanco`: `1000000000000000000` (1 ETH total)
 
-_limiteRetiro: 10000000000000000 (0.01 ETH por retiro)
-_capacidadBanco: 1000000000000000000 (1 ETH total)
+2. **Deposito** 0.5 ETH
+   - Voy a `depositar()` → ingreso 0.5 en Value → Click en depositar
+   - Evento emitido: Deposito(miDireccion, 500000000000000000, 500000000000000000)
 
+3. **Consulto mis registros**
+   - `registrosUsuario(miDireccion)` → Devuelve: saldo=500000000000000000, depositos=1, retiros=0
 
-2-Deposito 0.5 ETH
+4. **Retiro 0.01 ETH**
+   - `retirar(10000000000000000)` → Click
+   - Evento emitido: Retiro(miDireccion, 10000000000000000, 490000000000000000)
 
-Voy a depositar() → ingreso 0.5 en Value → Click en depositar
-Evento emitido: Deposito(miDireccion, 500000000000000000, 500000000000000000)
+5. **Consulto capacidad restante**
+   - `obtenerCapacidadRestante()` → Devuelve: 500000000000000000 (0.5 ETH disponibles)
 
+---
 
-3-Consulto mis registros
+## 🔒 Seguridad
 
-registrosUsuario(miDireccion) → Devuelve: saldo=500000000000000000, depositos=1, retiros=0
+El contrato implementa:
+- ✅ **Checks-Effects-Interactions**: Valida antes de modificar estado, y realiza llamadas externas al final
+- ✅ **Custom Errors**: Usa errores personalizados en lugar de require() para mejor gas efficiency
+- ✅ **Patrón Call**: Usa `call{value: monto}("")` para transferencias seguras
+- ✅ **Validaciones exhaustivas**: Verifica límites, capacidad y saldos
 
-
-4-Retiro 0.01 ETH
-
-retirar(10000000000000000) → Click
-Evento emitido: Retiro(miDireccion, 10000000000000000, 490000000000000000)
-
-
-5-Consulto capacidad restante
-
-obtenerCapacidadRestante() → Devuelve: 500000000000000000 (0.5 ETH disponibles)
+---
+**Tabla de conversión ETH a Wei:**
+| ETH | Wei |
+|-----|-----|
+| 0.01 | 10000000000000000 |
+| 0.1 | 100000000000000000 |
+| 1 | 1000000000000000000 |
